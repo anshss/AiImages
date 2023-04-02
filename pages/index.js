@@ -10,15 +10,15 @@ export default function Home() {
 
 
 	const configuration = new Configuration({
-	  apiKey: process.env.NEXT_PUBLIC_GPT_API_KEY,
+		apiKey: process.env.NEXT_PUBLIC_GPT_API_KEY,
 	});
 	const openai = new OpenAIApi(configuration);
-	
+
 	async function generateImage() {
 		await openai.createImage({
-		  prompt: inputValue,
-		  n: 2,
-		  size: "1024x1024",
+			prompt: inputValue,
+			n: 2,
+			size: "1024x1024",
 		}).then(response => {
 			console.log(response.data.data[0].url)
 			setImageUrl(response.data.data[0].url);
@@ -27,14 +27,17 @@ export default function Home() {
 
 	function handleInputChange(event) {
 		setInputValue(event.target.value);
-	  }
+	}
 
 
 	return (
-		<div>
-			<input type="text" placeholder="Enter text here" value={inputValue} onChange={handleInputChange}/>
-			<button onClick={generateImage}> Submit </button>
-			<img src={imageUrl} />
+		<div className={styles.container}>
+			<h2>Generate images from text</h2>
+			<div>
+				<input className={styles.input} type="text" placeholder="Enter text here" value={inputValue} onChange={handleInputChange} />
+				<button onClick={generateImage}> Submit </button>
+				<img src={imageUrl} />
+			</div>
 
 		</div>
 	)
