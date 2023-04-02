@@ -38,6 +38,7 @@ export default function Home() {
 				<button onClick={generateImage}> Submit </button>
 				<img src={imageUrl} />
 			</div>
+			<p className={styles.switch}>Switch to desktop</p>
 
 		</div>
 	)
